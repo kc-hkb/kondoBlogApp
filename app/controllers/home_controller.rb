@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
+  def index
+  end
 
-	def index
-		render 'home/index'
+	def about
+		render 'home/about'
 	end
-
 end
