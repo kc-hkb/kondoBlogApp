@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
 			redirect_to article_path(@article),
 			notice: '保存できたよ'
 		else
-			flash.now[:error] = "保存に失敗"
+			flash.now[:error] = '保存に失敗'
 			render :new
 		end
 	end
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
 			redirect_to article_path(@article),
 			notice: '更新できました。'
 		else
-			flash.now[:error] = "更新できませんでした。"
+			flash.now[:error] = '更新できませんでした。'
 			render :edit
 		end
 	end
