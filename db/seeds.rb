@@ -6,9 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-10.times do
+John = User.create!(email: 'John@example.com', password: 'password')
+Yuki = User.create!(email: 'Yuki@example.com', password: 'password')
 
-	Article.create(
+5.times do
+	John.articles.create(
+		title: Faker::Lorem.sentence(word_count: 5),
+		content: Faker::Lorem.sentence(word_count: 100)
+	)
+end
+
+5.times do
+	Yuki.articles.create(
 		title: Faker::Lorem.sentence(word_count: 5),
 		content: Faker::Lorem.sentence(word_count: 100)
 	)
