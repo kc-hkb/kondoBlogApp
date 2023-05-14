@@ -1,7 +1,8 @@
 .article
   %h1.article_title= @article.title
   .article_detail
-    = image_tag 'default-avatar.png'
+    = link_to account_path(@article.user) do
+      = image_tag 'default-avatar.png'
     %div
       %p=@article.author_name
       %p= @article.display_created_at
