@@ -17,3 +17,6 @@ textarea {
   resize: vertical;
   border: 1px solid #EBEBEB;
 }
+textarea.sm {
+  min-height: 160px;
+}
