@@ -1,4 +1,7 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   devise_for :users
@@ -6,11 +9,7 @@ Rails.application.routes.draw do
   root to: 'articles#index'
   resource :timeline, only:[:show]
 
-	resources :articles do
-    resources :comments, only:[:index, :new, :create]
-
-    resource :like, only:[:show, :create, :destroy]
-  end
+	resources :articles
 
   resources :accounts, only:[:show] do
     resources :follows, only:[:create]
@@ -18,4 +17,11 @@ Rails.application.routes.draw do
   end
 
   resource :profile, only:[:show, :edit, :update]
+
+  namespace :api, defaults: {format: :json} do
+    scope '/articles/:article_id' do
+      resources :comments, only:[:index, :new, :create]
+      resource :like, only:[:show, :create, :destroy]
+    end
+  end
 end
